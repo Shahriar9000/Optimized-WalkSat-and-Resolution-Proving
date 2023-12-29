@@ -1,4 +1,5 @@
 //Shahriar Arefin
+//Daniel A. Espinosa Gonzalez , bugfixed your int types being in the wrong places to size_ts
 
 #include "optimized_WALKSAT.h"
 
@@ -63,7 +64,7 @@ map<int, bool> walk_sat(float probability_, int max_flips)
       //flip the variable that maximizes the number of satisfied clauses overall
       int var;
       int least_unsat_count = total_clauses;
-      for (int i = 0; i < choosen_clause.size(); i++) 
+      for (size_t i = 0; i < choosen_clause.size(); i++) 
       {
         var = abs(choosen_clause[i]);
         int total_unsat_change = count_unsat_change(model, var);
@@ -102,7 +103,7 @@ void load_CNF_file(char* file_path) {
       getline(input_file, line);
       tokens = split_clause(line, DELIMITER);
       vector<int> clause;
-      for (int j = 0; j < tokens.size()-1; j++) 
+      for (size_t j = 0; j < tokens.size()-1; j++) 
       {
         clause.push_back( stoi(tokens[j]));
       }
@@ -132,7 +133,7 @@ void display_sat_model(const map<int, bool>& model)
   }
 
   cout << "Therefore solution = " ;
-  for (int i = 0; i < solution.size(); ++i)
+  for (size_t i = 0; i < solution.size(); ++i)
   {
     cout << "X" << i+1 << ":" << solution[i] << ", ";
   }
@@ -220,7 +221,7 @@ int count_unsat_change(map<int, bool>& model, int variable)
 
 bool if_symbol_exists(const vector<int>& clause, int symbol)
 {
-  for (int i = 0; i < clause.size(); i++) 
+  for (size_t i = 0; i < clause.size(); i++)
   {
     if (abs(clause[i]) == symbol)
     {
@@ -238,7 +239,7 @@ vector<string> split_clause(const string& string_, char delimiter)
   int word_length = 0;
   bool inword_ = false;
 
-  for (int i = 0; i < string_.length(); i++) 
+  for (size_t i = 0; i < string_.length(); i++) 
   {
     if (string_[i] == delimiter) {
       if (inword_ == true) 
@@ -267,7 +268,7 @@ vector<string> split_clause(const string& string_, char delimiter)
 string convert_clause_to_string(const vector<int>& clause) 
 {
   string encoding = "C";
-  for (int i = 0; i < clause.size(); i++) 
+  for (size_t i = 0; i < clause.size(); i++) 
   {
     encoding = encoding + " " + to_string(clause[i]);
   }

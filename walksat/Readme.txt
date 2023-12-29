@@ -8,6 +8,13 @@ $ ./SAT (filename)
 Example:
 ---------
 
+NEW (2023 MinGW):
+g++ -Wall -g -O2 -c optimized_WALKSAT.cpp
+g++ -Wall -g -O2 -c walksat_main.cpp
+g++ -o SAT walksat_main.o optimized_WALKSAT.o -static-libgcc
+
+OLD:
+
 9000s@LAPTOP-GVVCJ91D MINGW64 ~/Documents/CMPT310/A5_project
 $ mingw32-make all
 g++ -c walksat_main.cpp
